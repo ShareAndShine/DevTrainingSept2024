@@ -1,0 +1,17 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.sfdx": true
+  },
+  "salesforce.einsteinForDevelopers.enableAutocompletions": true,
+  "salesforce.einsteinForDevelopers.enableDebugLogging": true,
+  "cody.codeActions.enabled": false,
+  "cody.commandHints.enabled": false,
+  "cody.autocomplete.enabled": false,
+  "cody.autocomplete.completeSuggestWidgetSelection": false,
+  "openctx.enable": false,
+  "salesforce.einsteinForDevelopers.advanced": {
+    
+  }
+}

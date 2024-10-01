@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mandatory_Check_for_Annual_Revenue</fullName>
+    <active>false</active>
+    <description>This validation rule will check for value in annual revenue field</description>
+    <errorConditionFormula>ISBLANK(AnnualRevenue)</errorConditionFormula>
+    <errorDisplayField>AnnualRevenue</errorDisplayField>
+    <errorMessage>Annual Revenue is required</errorMessage>
+</ValidationRule>
