@@ -59,7 +59,7 @@ public class Hotel{
         objAccount.Website = this.hotelWebsite;
 
         // call the inbuilt method to insert a new record
-        insert objAccount;
+        insert objAccount; // DML Statment
 
         return objAccount.Id; // Salesforce will hold id of the newly created record and return it to the parent method
      }
@@ -76,7 +76,7 @@ public class Hotel{
         // query account record by id and update website        
         Account recAcc = [SELECT Id, Name, Website FROM Account WHERE Id =: strhotelAccountId];
         recAcc.Website = strWebsite; 
-        update recAcc;
+        update recAcc; // DML Statement
 
       }
 
@@ -96,6 +96,32 @@ public class Hotel{
           
       }
 
+
+    // method to create multiple hotel account records. Should take list of accounts as input parameter. 
+    public void createMultipleHotelAccounts_WithPartialInsertEnabled(List<Account> lstAccounts)
+    {
+    
+        Database.SaveResult[]  results =  Database.insert(lstAccounts, false); // simply pass on lst of objects to the insert command. APEX will know how to deal with the list object
+    
+        // Read the response from Database.insert and then check if the record status is success or error. Accordingly handle error and success
+        for(Database.SaveResult objAccResult : results)
+        {
+            if(objAccResult.isSuccess())
+            {
+                System.debug('Record created successfully. ID: ' + objAccResult.getId());
+            }
+            else
+            {
+                // failed records are stored in a collection internaly
+                for(Database.Error objError : objAccResult.getErrors())
+                {
+                    System.debug('Error Message: ' + objError.getMessage());
+                    System.debug('Error Status Code: ' + objError.getStatusCode());
+                }
+            }
+       }
+}
+      
      
     /* public void createHotelRecord()
      {
@@ -142,6 +168,44 @@ public class Hotel{
         
      }
 
-     
+    public Map<String, Decimal> getHotelStats()
+    {
+            // Create a map to hold avg. hotel rating and hotel reviews count
+        Map<String, Decimal> objHotelStats = new Map<String, Decimal>();
+
+        objHotelStats.put('AvgHotelRating', 4.2);
+        objHotelStats.put('TotalHotelReviews', 10);
+
+        System.debug('Hotel Stats ::' + objHotelStats);
+        System.debug('Total Hotel Reviews ::' + objHotelStats.get('TotalHotelReviews'));
+
+        return objHotelStats; // 2 data points
+    }
+
+    public Map<String, Decimal> getHotelStatsByHotelId(String hotelAccountID)
+    {
+
+        // call soql query to get avg. hotel rating and hotel reviews count
+       AggregateResult[] results =  [SELECT Account__r.ID, COUNT(Id) totalReviews, AVG(Customer_Rating__c) avgRating FROM Hotel_Review__c Where Account__r.Id =: hotelAccountID group by Account__r.Id];
+
+       // Create a map to hold avg. hotel rating and hotel reviews count
+       Map<String, Decimal> objHotelStats = new Map<String, Decimal>();
+
+       // check if there is any record
+       if(results.size() > 0)
+       {
+            System.debug('Total Hotel Reviews ::' + results[0].get('totalReviews'));
+            System.debug('Avg Rating ::' + results[0].get('avgRating'));
+
+            
+
+            objHotelStats.put('AvgHotelRating', (Decimal)results[0].get('avgRating'));
+            objHotelStats.put('TotalHotelReviews', (Decimal)results[0].get('totalReviews'));
+            
+
+       }
+
+       return objHotelStats; // 2 data points
+    }
 
 }
