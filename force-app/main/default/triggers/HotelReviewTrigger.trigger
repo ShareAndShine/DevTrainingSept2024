@@ -14,7 +14,7 @@ trigger HotelReviewTrigger on Hotel_Review__c (before insert, before update, bef
 
     
     System.debug('Value of Trigger.old::' + Trigger.old); // collection 
-    System.debug('Value of Trigger.new::' + Trigger.new); // collection 
+    System.debug('Value of Trigger.new::' + Trigger.new); // collection | will carry record(s) only during insert operation
     System.debug('Value of Trigger.oldMap::' + Trigger.oldMap); // collection 
     System.debug('Value of Trigger.newMap::' + Trigger.newMap);     // collection 
     
@@ -22,20 +22,8 @@ trigger HotelReviewTrigger on Hotel_Review__c (before insert, before update, bef
     // Stop hotel review record from getting deleted
     if(Trigger.isDelete && Trigger.isBefore)
     {
-        // APEX Code
-        System.debug('Inside before delete block & check on the hotel review record and hotel associaation');
-        
-        // Use Trigger.old check the data that user is attempting to delete
-        for(Hotel_Review__c recHotelReview : Trigger.old)
-        {
-            System.debug('Record attempted to delete is ' + recHotelReview);
-            if(recHotelReview.Account__c != null)
-            {
-                // stop user from deleteing a record ... throw an error message
-                // Use Salesforce default method named addErrror()
-                recHotelReview.addError('Cannot delete this review as it is associated with an hotel account');
-            }
-        }
+        // pass Trigger.old as an argument
+        HotelReviewController.validateHotelReview(Trigger.old);         
         
     }
     
@@ -45,10 +33,11 @@ trigger HotelReviewTrigger on Hotel_Review__c (before insert, before update, bef
         System.debug('I m inside after delete  block');
     }
     
-    if(Trigger.isInsert)
+    if(Trigger.isInsert && Trigger.isBefore)
     {
-        // APEX Code
-        System.debug('I m inside insert block');
+        
+        // call UpdateDefaultCustomerRating() and send list of hotel review records being inserted as input arugument   
+        HotelReviewController.UpdateDefaultCustomerRating(Trigger.new);
     }
     
     
