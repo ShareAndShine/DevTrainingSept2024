@@ -170,7 +170,7 @@ Integer iAnotherNumber = 4.533; // assigning decimal to an integer
 Integer iNumber = (Integer)4.533; // conversion happens
 
 */
-
+/*
 
 Hotel obj = new Hotel();
 obj.getHotelStatsByHotelId('0015j000018Fx07AAC');
@@ -181,3 +181,21 @@ System.debug('iNumber::' + iNumber);
 
 
 Integer iNumberOne = Integer.valueOf('One'); // totally wrong
+
+*/
+
+//HotelReviewNotifier.notifyRelationshipOfficer('0015j00001BHOjnAAH');
+
+// BAD CODE - Breaches Governor limit
+/*
+for(Integer i=1; i<=200 ; i++)
+{
+    Account acc = new Account();
+    acc.Name = 'Test ' + i;
+    insert acc; // DML statement runs for 200 times
+}*/
+
+
+// Execute the batch with a batch size of 5
+HotelReviewBatch batchHR = new HotelReviewBatch();
+Database.executeBatch(batchHR, 5);

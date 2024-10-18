@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management App</title>
+    <!-- SLDS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.25.3/styles/salesforce-lightning-design-system.min.css" />
+</head>
+<body class="slds-scope">
+    <div class="slds-grid slds-wrap slds-m-around_medium">
+        <div class="slds-size_1-of-1 slds-p-around_medium">
+            <h1 class="slds-text-heading_large">Hotel Management App</h1>
+        </div>
+
+        <!-- Form to Add New Hotel -->
+        <div class="slds-box slds-size_1-of-1 slds-p-around_medium">
+            <h2 class="slds-text-heading_medium">Add a New Hotel</h2>
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_3-of-4">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="hotel-name">Hotel Name</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" id="hotel-name" class="slds-input" placeholder="Enter Hotel Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <button class="slds-button slds-button_brand" id="add-hotel">Add Hotel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel List -->
+        <div class="slds-box slds-size_1-of-1 slds-p-around_medium">
+            <h2 class="slds-text-heading_medium">Hotel List</h2>
+            <div id="hotel-list" class="slds-box slds-box_x-small slds-theme_default slds-p-around_medium"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

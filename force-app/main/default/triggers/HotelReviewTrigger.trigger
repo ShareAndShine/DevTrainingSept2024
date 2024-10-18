@@ -38,9 +38,29 @@ trigger HotelReviewTrigger on Hotel_Review__c (before insert, before update, bef
         
         // call UpdateDefaultCustomerRating() and send list of hotel review records being inserted as input arugument   
         HotelReviewController.UpdateDefaultCustomerRating(Trigger.new);
+
     }
     
-    
+
+    if(Trigger.isInsert && Trigger.isAfter)
+    {
+        // check if hotel review rating is < 2 then call notifyRelationshipOfficer
+        
+        // loop thru Trigger.New and check if rating is <2 . If yes, add account Id to a list
+        List<Id> hotelAccountIds = new List<Id>();
+
+        for(Hotel_Review__c reviewRecord : Trigger.new)
+        {
+            if(reviewRecord.Customer_Rating__c <2)
+            {
+                hotelAccountIds.add(reviewRecord.Account__c);
+            }
+        }
+
+
+        HotelReviewNotifier.notifyRelationshipOfficer(hotelAccountIds);
+    }
+
     if(Trigger.isUpdate)
     {
         // APEX Code
