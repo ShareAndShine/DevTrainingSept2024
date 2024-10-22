@@ -1,0 +1,12 @@
+/* CSS for text box border */
+.textbox {
+    border: 1px solid #ccc; /* Change the color as per your design */
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .textbold
+  {
+    font-weight: bold;
+  }

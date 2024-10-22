@@ -1,0 +1,15 @@
+<template>
+    div>
+        <lightning-combobox id="productSelect" name="productSelect" label="Select a product">
+            <option value="product1">Product 1</option>
+            <option value="product2">Product 2</option>
+        </lightning-combobox>
+        <lightning-combobox id="campaignSelect" name="campaignSelect" label="Select a campaign">
+            <option value="campaign1">Campaign 1</option>
+            <option value="campaign2">Campaign 2</option>
+        </lightning-combobox>
+        <lightning-textarea id="freeFormText" name="freeFormText" label="Enter free form text"></lightning-textarea>
+        <lightning-button id="generateNewsletterButton" onclick={generateNewsletter}>Generate Newsletter</lightning-button>
+    </div>
+    <div id="result"></div>
+</template>
