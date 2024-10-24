@@ -197,5 +197,8 @@ for(Integer i=1; i<=200 ; i++)
 
 
 // Execute the batch with a batch size of 5
-HotelReviewBatch batchHR = new HotelReviewBatch();
-Database.executeBatch(batchHR, 5);
+//HotelReviewBatch batchHR = new HotelReviewBatch();
+//Database.executeBatch(batchHR, 5);
+
+Hotel objHotel = new Hotel();
+objHotel.getHotelStatsByHotelId('0015j000018Fx07AAC');

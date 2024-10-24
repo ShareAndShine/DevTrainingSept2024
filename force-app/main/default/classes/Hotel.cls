@@ -182,7 +182,10 @@ public class Hotel{
         return objHotelStats; // 2 data points
     }
 
-    public Map<String, Decimal> getHotelStatsByHotelId(String hotelAccountID)
+
+    // Use auraenabled annotation to make this method accessible by a LWC compoent
+    @AuraEnabled(cacheable=true)
+    public static Map<String, Decimal> getHotelStatsByHotelId(String hotelAccountID)
     {
 
         // call soql query to get avg. hotel rating and hotel reviews count

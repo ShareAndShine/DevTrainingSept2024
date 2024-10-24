@@ -1,12 +1,19 @@
+
 <template>
     <!-- Your HTML Code here -->
-     <div>
-        <lightning-card  title={headertitle}>
+     <div style={customStyle}>
+        <lightning-card  title={cardTitle}>
           
             <lightning-button variant="brand" label="Click Me"
-            title="Click me!!!"  class="slds-m-left_x-small" onclick={showName}>
+            title="Click me!!!"  id="btnClick" 
+            class="slds-m-left_x-small" onclick={showName}>
         </lightning-button>
-            <p id="output">Hello World</p>
+            <p id="output">Height as entered by the user is {cardHeight}</p>
+            <p>Width as entered by the user is {cardWidth}</p>
+
+            <p class="textbold">Syntax 1 | Name: {strText}</p>
+
+            <p>Syntax 2 | Name: {participantName}</p>
             
         </lightning-card>
     </div>

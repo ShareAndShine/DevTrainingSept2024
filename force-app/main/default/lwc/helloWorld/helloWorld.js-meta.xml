@@ -14,6 +14,29 @@
                     <object>Opportunity</object> <!-- API Name of the object where this component can be used -->
                     <object>Hotel_Review__c</object>
                 </objects>
+                <property name="cardTitle" type="String" 
+                label="Enter Card Title" description="Configurate Component Card Title"></property>
+        </targetConfig>
+
+
+         <targetConfig targets="lightning__HomePage">
+                <property name="cardTitle" type="String" 
+                label="Enter Card Title" description="Configurate Component Card Title"></property>
+        
+                <property name="cardHeight" type="String" 
+                label="Enter Component Height in px" 
+                description="Configurate Component Card Height" default="150"></property>
+        
+
+                <property name="cardWidth" type="String" 
+                label="Enter Component Width in px" 
+                description="Configurate Component Card Width" default="300"></property>
+        
+                <property name="cardColor" type="String" 
+                label="Enter Component color" 
+                description="Configurate Component Card color" default="blue"></property>
+        
+
         </targetConfig>
     </targetConfigs>
     

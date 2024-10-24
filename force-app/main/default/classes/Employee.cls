@@ -1,6 +1,7 @@
 public with sharing class Employee {
     public Employee() {
-
+            // code runs all the time when obj is created
+            // for the class
     }
 
 
