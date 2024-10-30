@@ -1,7 +1,35 @@
 <template>
     <lightning-card title={headerTitle}>
-        <p class="slds-p-horizontal_small">Implementation in progress...</p>
-        <p>The current page record Id is {recordId}</p>
-        
+
+        <div class="slds-align_absolute-center slds-box">
+                <lightning-button-icon icon-name="standard:reward" 
+                 alternative-text="simpleicon"
+                  title="simpleicon"></lightning-button-icon>
+            
+            <br>
+            <ul class="slds-list_dotted">
+                
+                <li>
+                     
+                    <p style={ratingColor}>
+                        <b>Avg. Rating is </b> {avgRating}   
+                    </p>
+                    
+                </li>
+                <li><b>Total Review count is </b> {customerReviewsCount}</li>
+            </ul>
+
+          
+        </div>
+        <div class="slds-box slds-align_absolute-center slds-p-top_xx-small slds-m-top_xx-small">
+            <div>
+                <!-- Adding child component-->
+                 <!-- Follow kebab casing when a component is referred as HTML tag-->
+                <c-hotel-action-plan  average-rating={avgRating}></c-hotel-action-plan>
+            </div>
+
+        </div>
+
+
     </lightning-card>
 </template>

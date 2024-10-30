@@ -1,0 +1,52 @@
+<template>
+    <p>Avg. Rating from parent component is {averageRating}</p>
+
+    <lightning-card title="Hotel Action Plan">
+        <div class="slds-p-horizontal_small slds-m-top_medium">
+            <lightning-combobox
+                label="Choose an action"
+                placeholder="Select an option"
+                options={actionOptions}
+                value={selectedOption}
+                onchange={handleActionPlanOptionChange}>                
+            </lightning-combobox>
+            
+            <lightning-button label="Execute Action" onclick={excuteAction} 
+            class="slds-align_absolute-center" icon-name="utility:fallback"></lightning-button>
+        </div>
+
+
+        <!-- Placeholder for create case | Start-->
+        <div class="slds-m-vertical_medium" if:true={showCreateCase}>
+            <lightning-input type="text" label="Enter case subject" 
+            data-id="txtCaseSubject"></lightning-input>
+            <lightning-textarea
+                label="Case Instructions"
+                data-id="txtCaseInstructions"
+                value={caseInstructions}
+                max-length="255"
+                placeholder="type case instructions here...">
+            </lightning-textarea>
+        </div>
+        <!-- Placeholder for create case | End-->
+        
+
+         <!-- Placeholder for Email To CRM | Start-->
+        <div if:true={showemailCRM}>
+            <lightning-textarea
+                label="Email Additional Content"
+                placeholder="type email additonal content here...">
+            </lightning-textarea>
+        </div>
+          <!-- Placeholder for Email To CRM | End-->
+
+        <!-- Placeholder for Task To CRM | Start-->
+        <div if:true={showtaskCRM}>
+            <p>In progress : Task feature </p>
+        </div>
+        <!-- Placeholder for Task To CRM | End-->
+
+
+    </lightning-card>
+    
+</template>

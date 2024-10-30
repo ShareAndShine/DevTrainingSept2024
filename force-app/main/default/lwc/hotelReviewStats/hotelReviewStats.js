@@ -11,6 +11,29 @@ export default class HotelReviewStats extends LightningElement {
     // use recordId to find the current record page CRM id
     @api recordId; // system prooperty that automatically holds the record Id of the page where this LWC component is used
 
+
+    // properties to hold customer reviews count and avg. rating
+    customerReviewsCount;
+    avgRating;
+
+
+    //propert that will calculate the color dynamically based on avg. rating 
+    get ratingColor()
+    {
+      if(this.avgRating < 2)
+      {
+        return 'color:red;';
+      }
+      else if(this.avgRating >= 2 && this.avgRating <= 4)
+      {
+        return 'color:brown;';
+      }
+      else
+      {
+        return 'color:green;';
+      }
+
+    }   
     // Step 3: Make a call to APEX Method using wire adaptor
      // data and error system properties that will hold the output of APEX method
     /*@wire(<APEXMethodName>, <Send input params>)
@@ -25,6 +48,13 @@ export default class HotelReviewStats extends LightningElement {
         if(data)
         {
             console.log('data from DB::' + JSON.stringify(data));
+            // read apex method output from data system property and assign to variable
+            this.customerReviewsCount = data.TotalHotelReviews;
+            this.avgRating = data.AvgHotelRating;
+        }
+        else if(error)
+        {
+            console.log('error::' + JSON.stringify(error));
         }
     }
 

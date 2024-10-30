@@ -27,6 +27,8 @@
                 </div>
                 <div class="slds-col slds-size_1-of-4">
                     <button class="slds-button slds-button_brand" id="add-hotel">Add Hotel</button>
+                    <button id="chat-button" 
+                    class="slds-button slds-button_neutral" onclick="initEmbeddedMessaging();">Chat with Support</button>
                 </div>
             </div>
         </div>
@@ -39,5 +41,25 @@
     </div>
 
     <script src="script.js"></script>
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+    
+                embeddedservice_bootstrap.init(
+                    '00D4y000000dWEf',
+                    'ESA_Web_Deployment',
+                    'https://d4y000000dwefeam-dev-ed.develop.my.site.com/ESWESAWebDeployment1724800920657',
+                    {
+                        scrt2URL: 'https://d4y000000dwefeam-dev-ed.develop.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://d4y000000dwefeam-dev-ed.develop.my.site.com/ESWESAWebDeployment1724800920657/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    
 </body>
 </html>
