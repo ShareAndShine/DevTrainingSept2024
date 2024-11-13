@@ -63,5 +63,12 @@ export default class HotelReviewStats extends LightningElement {
         console.log('Value of record Id is ' + this.recordId);
     }
 
+    //disconnected call back method
+    disconnectedCallback()
+    {
+        console.log('disconnectedCallback is called');
+        // check for record Id
+    }
+
 
 }

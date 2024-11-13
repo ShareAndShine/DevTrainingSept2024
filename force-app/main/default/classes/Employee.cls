@@ -4,7 +4,14 @@ public with sharing class Employee {
             // for the class
     }
 
-
+/**
+     * @name: Employee
+     * @description: This constructor is used to initialize the values of the variables
+     * @param: String empName
+     * @param: Integer numberOfHours
+     * @param: Integer hourlyRate
+     * @return: void
+     */
     public void printEmployeeSalary(String empName, Integer numberOfHours, Integer hourlyRate)
     {
         EmployeeSalaryCalculator objEmp = new EmployeeSalaryCalculator(empName, numberOfHours, hourlyRate);
@@ -16,4 +23,6 @@ public with sharing class Employee {
         
         System.debug('I m a static method');
     }
+
+    
 }
